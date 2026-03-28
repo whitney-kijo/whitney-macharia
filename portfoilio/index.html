@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitney Macharia — Graphic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#F5F0E8;--warm-white:#FAF7F2;--brown-dark:#3D1F0D;
+  --brown-mid:#7A4528;--brown-warm:#A0623A;--brown-light:#C8956A;
+  --taupe:#C4B5A0;--taupe-light:#DDD3C6;--text:#2A1A0E;--text-muted:#7A6A5A;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden;cursor:none}
+
+/* ── CURSOR ── */
+.cursor{width:12px;height:12px;background:var(--brown-dark);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s}
+.cursor-ring{width:36px;height:36px;border:1.5px solid var(--brown-warm);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;opacity:.6}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:24px 60px;background:rgba(245,240,232,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,181,160,.2)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.08em;color:var(--brown-dark);text-decoration:none}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--brown-mid);text-decoration:none;position:relative;padding-bottom:2px;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--brown-warm);transition:width .4s}
+.nav-links a:hover{color:var(--brown-dark)}
+.nav-links a:hover::after{width:100%}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:flex-end;padding:140px 60px 80px;position:relative;z-index:2}
+.hero-eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--brown-warm);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--brown-warm)}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(64px,7vw,110px);font-weight:300;line-height:.95;letter-spacing:-.02em;color:var(--brown-dark);margin-bottom:32px;animation:fade-up 1s .2s both}
+.hero-name em{font-style:italic;color:var(--brown-warm)}
+.hero-bio{max-width:400px;color:var(--text-muted);font-size:15px;line-height:1.8;margin-bottom:48px}
+.hero-cta{display:inline-flex;align-items:center;gap:16px;background:var(--brown-dark);color:var(--cream);padding:18px 36px;text-decoration:none;font-size:13px;letter-spacing:.12em;text-transform:uppercase;position:relative;overflow:hidden;transition:all .4s}
+.hero-cta::before{content:'';position:absolute;inset:0;background:var(--brown-warm);transform:translateX(-100%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
+.hero-cta:hover::before{transform:translateX(0)}
+.hero-cta span,.hero-cta svg{position:relative;z-index:1}
+.hero-scroll-hint{position:absolute;bottom:40px;left:60px;display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);z-index:2}
+.scroll-line{width:40px;height:1px;background:var(--taupe);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--brown-warm);animation:scroll-pulse 2s ease-in-out infinite}
+@keyframes scroll-pulse{0%{left:-100%}100%{left:100%}}
+.hero-right{position:relative;overflow:hidden;background:var(--taupe-light)}
+.hero-blob{position:absolute;border-radius:60% 40% 55% 45%/45% 55% 45% 55%;background:var(--brown-mid);opacity:.12;animation:blob-drift 12s ease-in-out infinite}
+.hero-blob:nth-child(1){width:500px;height:500px;top:-100px;right:-100px}
+.hero-blob:nth-child(2){width:300px;height:300px;bottom:50px;left:50px;animation-delay:-6s;opacity:.08}
+@keyframes blob-drift{0%,100%{border-radius:60% 40% 55% 45%/45% 55% 45% 55%}50%{border-radius:40% 60% 45% 55%/55% 45% 55% 45%}}
+.hero-visual-grid{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:120px 40px 40px}
+.hero-grid-card{background:var(--cream);opacity:0;animation:fade-up .8s forwards;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;padding:20px}
+.hero-grid-card:nth-child(1){animation-delay:.4s;grid-column:span 2}
+.hero-grid-card:nth-child(2){animation-delay:.6s}
+.hero-grid-card:nth-child(3){animation-delay:.8s;background:var(--brown-dark);color:var(--cream)}
+.hero-grid-card:nth-child(4){animation-delay:1s;background:var(--brown-warm)}
+.hero-grid-card:nth-child(5){animation-delay:1.2s;grid-column:span 2}
+.card-label{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2vw,22px);font-weight:600;letter-spacing:.05em}
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:var(--brown-dark);padding:18px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:marquee-move 20s linear infinite}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--taupe-light);padding:0 40px;letter-spacing:.05em}
+.marquee-dot{color:var(--brown-warm);font-style:normal}
+@keyframes marquee-move{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTIONS ── */
+section{padding:120px 60px}
+.section-label{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--brown-warm);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--brown-warm)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:300;line-height:1.05;color:var(--brown-dark);margin-bottom:60px}
+.section-title em{font-style:italic;color:var(--brown-warm)}
+
+/* ── ABOUT ── */
+.about-section{background:var(--warm-white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-text p{color:var(--text-muted);line-height:1.9;margin-bottom:20px;font-size:16px}
+.tools-list{margin-top:48px;display:flex;flex-wrap:wrap;gap:10px}
+.tool-tag{padding:8px 18px;border:1px solid var(--taupe);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--brown-mid);transition:all .3s}
+.tool-tag:hover{background:var(--brown-dark);color:var(--cream);border-color:var(--brown-dark)}
+.about-visual{position:relative;aspect-ratio:4/5;background:var(--taupe-light);overflow:hidden}
+.about-circle{position:absolute;border-radius:50%;background:var(--brown-mid);opacity:.15}
+.about-circle:nth-child(1){width:300px;height:300px;top:-80px;right:-60px}
+.about-circle:nth-child(2){width:160px;height:160px;bottom:80px;left:-40px;opacity:.1}
+.about-visual-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:40px;background:linear-gradient(to top,rgba(61,31,13,.8) 0%,transparent 60%)}
+.about-visual-text{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;font-style:italic;color:var(--cream);line-height:1.2;position:relative;z-index:1}
+
+/* ── WORK / FILTER ── */
+.work-section{background:var(--cream)}
+.filter-tabs{display:flex;gap:4px;margin-bottom:60px;flex-wrap:wrap}
+.filter-btn{font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--taupe);cursor:none;color:var(--text-muted);padding:10px 22px;transition:all .3s}
+.filter-btn.active{background:var(--brown-dark);color:var(--cream);border-color:var(--brown-dark)}
+.filter-btn:hover:not(.active){background:var(--taupe-light);color:var(--brown-dark)}
+.category-section{display:none;animation:fade-up .5s ease both}
+.category-section.active{display:block}
+.category-description{margin-bottom:48px;max-width:760px}
+.category-description p{color:var(--text-muted);font-size:16px;line-height:1.9}
+
+/* ════════════════════════════════════════
+   PROJECT CARDS
+   ─ Images are ALWAYS visible.
+   ─ A permanent bottom gradient keeps the
+     short title readable at all times.
+   ─ On hover the full overlay slides in
+     with the category + longer title.
+════════════════════════════════════════ */
+.project-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:3px}
+
+.project-card{
+  position:relative;overflow:hidden;
+  background:var(--taupe-light);
+  cursor:none;min-height:320px;
+}
+
+/* ── background layer: colour fallback + actual image ── */
+.project-card-bg{
+  position:absolute;inset:0;
+  /* colour is set via class or inline style */
+  transition:transform .65s cubic-bezier(.23,1,.32,1);
+}
+.project-card:hover .project-card-bg{transform:scale(1.06)}
+
+/* THE key rule: image fills card, always visible */
+.project-card-bg img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  /* no opacity tricks — image is always shown */
+}
+
+/* Fallback icon (shown only when no img loads) */
+.project-card-icon{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,5vw,68px);
+  font-weight:300;font-style:italic;
+  color:rgba(61,31,13,.18);
+  user-select:none;pointer-events:none;
+  white-space:nowrap;
+}
+
+/* Permanent scrim: always-on gradient at bottom so title text is legible */
+.project-card-scrim{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(20,8,3,.72) 0%,rgba(20,8,3,.15) 40%,transparent 70%);
+  pointer-events:none;z-index:1;
+  transition:opacity .4s;
+}
+/* On hover the scrim fades out — replaced by the richer overlay */
+.project-card:hover .project-card-scrim{opacity:0}
+
+/* Always-visible short title at bottom (visible before hover) */
+.card-static-title{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:18px 24px;z-index:2;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(14px,1.6vw,22px);
+  font-weight:400;color:#fff;
+  line-height:1.25;
+  text-shadow:0 2px 10px rgba(0,0,0,.6);
+  transition:opacity .3s;
+  pointer-events:none;
+}
+.project-card:hover .card-static-title{opacity:0}
+
+/* Rich hover overlay */
+.project-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(20,8,3,.94) 0%,rgba(20,8,3,.3) 50%,transparent 75%);
+  opacity:0;transition:opacity .4s;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:28px;z-index:3;
+}
+.project-card:hover .project-card-overlay{opacity:1}
+
+.project-card-cat{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brown-light);margin-bottom:6px;
+  transform:translateY(12px);transition:transform .4s .05s;
+}
+.project-card:hover .project-card-cat{transform:translateY(0)}
+
+.project-card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,1.8vw,26px);font-weight:400;
+  color:#fff;line-height:1.2;
+  transform:translateY(12px);transition:transform .4s .1s;
+}
+.project-card:hover .project-card-title{transform:translateY(0)}
+
+/* Expand icon — top-right, appears on hover */
+.card-open-btn{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(245,240,232,.15);
+  border:1px solid rgba(245,240,232,.4);
+  color:#fff;font-size:15px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;opacity:0;transition:opacity .3s,background .3s;z-index:10;
+}
+.project-card:hover .card-open-btn{opacity:1}
+.card-open-btn:hover{background:var(--brown-warm);border-color:var(--brown-warm)}
+
+/* colour helpers */
+.c-ecru{background:#E8D5C4}.c-taupe{background:#D4C5B5}.c-dark{background:#3D1F0D}
+.c-sand{background:#C5B5A4}.c-warm{background:#A0623A}.c-light{background:#E0D4C8}
+.c-navy{background:#1E3A5F}.c-forest{background:#2D5016}.c-blue{background:#1A3A6B}
+.c-mauve{background:#7B5E7B}.c-green{background:#3D5A47}.c-rose{background:#A0665A}
+
+/* grid column spans */
+.id-grid      .project-card:nth-child(1){grid-column:span 5}
+.id-grid      .project-card:nth-child(2){grid-column:span 4}
+.id-grid      .project-card:nth-child(3){grid-column:span 3}
+.web-grid     .project-card:nth-child(1){grid-column:span 7}
+.web-grid     .project-card:nth-child(2){grid-column:span 5}
+.brand-grid   .project-card:nth-child(1){grid-column:span 4}
+.brand-grid   .project-card:nth-child(2){grid-column:span 4}
+.brand-grid   .project-card:nth-child(3){grid-column:span 4}
+.brand-grid   .project-card:nth-child(4){grid-column:span 6}
+.brand-grid   .project-card:nth-child(5){grid-column:span 6}
+.logo-grid    .project-card:nth-child(1){grid-column:span 6}
+.logo-grid    .project-card:nth-child(2){grid-column:span 6}
+.graphic-grid .project-card:nth-child(1){grid-column:span 4}
+.graphic-grid .project-card:nth-child(2){grid-column:span 4}
+.graphic-grid .project-card:nth-child(3){grid-column:span 4}
+.graphic-grid .project-card:nth-child(4){grid-column:span 6}
+.graphic-grid .project-card:nth-child(5){grid-column:span 6}
+.creative-grid .project-card:nth-child(n){grid-column:span 3}
+
+/* ════════════════════════════════════════
+   LIGHTBOX
+════════════════════════════════════════ */
+.lightbox{
+  position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(12,5,2,.94);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease;
+}
+.lightbox.open{opacity:1;pointer-events:all}
+.lb-inner{position:relative;width:90vw;max-width:1160px;display:flex;flex-direction:column;align-items:center}
+
+/* image preserves natural aspect ratio, max 68vh tall */
+.lb-img-wrap{width:100%;display:flex;align-items:center;justify-content:center}
+.lb-img-wrap img{
+  max-width:100%;max-height:68vh;
+  width:auto;height:auto;object-fit:contain;
+  border:1px solid rgba(196,181,160,.1);display:block;
+}
+.lb-placeholder{
+  width:100%;min-height:300px;max-height:68vh;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(196,181,160,.1);
+}
+.lb-placeholder-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,5vw,90px);font-style:italic;font-weight:300;
+  color:rgba(196,181,160,.2);text-align:center;padding:40px;
+}
+.lb-info{width:100%;margin-top:24px;display:flex;align-items:flex-start;justify-content:space-between;gap:32px}
+.lb-cat{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown-light);margin-bottom:8px}
+.lb-title{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,2.5vw,32px);font-weight:300;color:#fff;line-height:1.15}
+.lb-desc{max-width:440px;color:var(--taupe);font-size:14px;line-height:1.8;flex-shrink:0}
+.lb-counter{position:absolute;top:-40px;right:0;font-size:12px;letter-spacing:.15em;color:var(--taupe)}
+.lb-arrow{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:50px;height:50px;border-radius:50%;
+  border:1px solid rgba(196,181,160,.25);background:rgba(61,31,13,.55);
+  color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:background .3s,border-color .3s;z-index:1001;line-height:1;
+}
+.lb-arrow:hover{background:var(--brown-warm);border-color:var(--brown-warm)}
+.lb-prev{left:18px}
+.lb-next{right:18px}
+.lb-close{
+  position:fixed;top:22px;right:26px;
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(196,181,160,.25);background:rgba(61,31,13,.55);
+  color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:background .3s;z-index:1001;
+}
+.lb-close:hover{background:var(--brown-warm)}
+.lb-dots{display:flex;gap:7px;margin-top:18px}
+.lb-dot{width:6px;height:6px;border-radius:50%;background:rgba(196,181,160,.28);transition:background .3s;cursor:none}
+.lb-dot.active{background:var(--brown-warm)}
+
+/* ════════════════════════════════════════
+   VIDEO — full-bleed 50/50 split
+════════════════════════════════════════ */
+.video-section{background:var(--brown-dark);padding:0}
+.video-inner{display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.video-text{display:flex;flex-direction:column;justify-content:center;padding:100px 80px}
+.video-section .section-label{color:var(--brown-light)}
+.video-section .section-label::before{background:var(--brown-light)}
+.video-section .section-title{color:#fff;margin-bottom:32px}
+.video-section .section-title em{color:var(--brown-light)}
+.video-desc{color:var(--taupe-light);font-size:16px;line-height:1.9;margin-bottom:48px}
+.video-meta{display:flex;flex-direction:column}
+.video-meta-row{display:flex;align-items:flex-start;gap:16px;padding:14px 0;border-bottom:1px solid rgba(196,181,160,.15)}
+.video-meta-row:first-child{border-top:1px solid rgba(196,181,160,.15)}
+.vm-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--brown-light);min-width:90px;padding-top:2px}
+.vm-val{font-size:14px;color:var(--taupe-light);line-height:1.6}
+
+/* ── VIDEO PLAYER COLUMN ── */
+.video-visual{
+  position:relative;background:#080402;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.video-bg-word{
+  position:absolute;
+  font-family:'Cormorant Garamond',serif;font-size:200px;font-weight:300;font-style:italic;
+  color:rgba(255,255,255,.025);user-select:none;transform:rotate(-12deg);white-space:nowrap;
+  pointer-events:none;
+}
+
+/* Native video player — fills the right column */
+.video-player-wrap{
+  position:relative;z-index:2;
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:40px;
+}
+.video-player-wrap video{
+  width:100%;
+  max-height:80vh;
+  object-fit:contain;
+  display:block;
+  border:1px solid rgba(196,181,160,.1);
+}
+
+/* Fallback play-button shown only when video src is missing */
+.video-fallback{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:24px;
+}
+.video-play-btn{
+  width:96px;height:96px;border-radius:50%;
+  border:2px solid var(--brown-light);
+  display:flex;align-items:center;justify-content:center;
+  cursor:none;transition:all .4s;position:relative;
+}
+.video-play-btn::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:2px solid var(--brown-warm);transform:scale(1.18);opacity:0;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1.18);opacity:0}50%{transform:scale(1.45);opacity:.4}}
+.video-play-btn:hover{background:var(--brown-warm);border-color:var(--brown-warm)}
+.play-icon{color:var(--brown-light);font-size:30px;margin-left:6px;transition:color .4s}
+.video-play-btn:hover .play-icon{color:#fff}
+.video-play-label{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;color:var(--taupe);letter-spacing:.06em;text-align:center}
+
+/* ── CONTACT ── */
+.contact-section{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-cta-big{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,72px);font-weight:300;line-height:1.05;color:var(--brown-dark);margin-bottom:48px}
+.contact-cta-big em{font-style:italic;color:var(--brown-warm)}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-info-row{display:flex;align-items:center;gap:16px}
+.contact-icon{color:var(--brown-warm);font-size:18px;min-width:24px}
+.contact-link{color:var(--brown-dark);text-decoration:none;font-size:16px;border-bottom:1px solid var(--taupe);transition:border-color .3s,color .3s}
+.contact-link:hover{color:var(--brown-warm);border-color:var(--brown-warm)}
+.contact-form{display:flex;flex-direction:column;gap:24px}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted)}
+.form-field input,.form-field textarea{background:none;border:none;border-bottom:1px solid var(--taupe);padding:12px 0;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color .3s;cursor:none}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--brown-warm)}
+.form-field textarea{resize:none;height:100px}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--taupe)}
+.form-submit{display:flex;align-items:center;justify-content:space-between;background:var(--brown-dark);color:#fff;border:none;padding:20px 32px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:none;position:relative;overflow:hidden;transition:background .4s}
+.form-submit::before{content:'';position:absolute;inset:0;background:var(--brown-warm);transform:translateX(-100%);transition:transform .4s cubic-bezier(.23,1,.32,1)}
+.form-submit:hover::before{transform:translateX(0)}
+.form-submit span{position:relative;z-index:1}
+.form-status{font-size:13px;min-height:18px}
+.form-status.ok{color:#4A7C59}
+.form-status.err{color:#A0665A}
+
+/* ── FOOTER ── */
+footer{background:var(--brown-dark);padding:40px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;font-weight:300}
+.footer-copy{font-size:12px;color:var(--taupe);letter-spacing:.05em}
+.footer-links{display:flex;gap:32px;list-style:none}
+.footer-links a{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);text-decoration:none;transition:color .3s}
+.footer-links a:hover{color:#fff}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:20px 24px}
+  .nav-links{display:none}
+  section{padding:80px 24px}
+  .hero{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left{padding:120px 24px 60px}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .about-visual{display:none}
+  .contact-section{grid-template-columns:1fr}
+  footer{padding:40px 24px}
+  .project-card{grid-column:span 12!important;min-height:260px}
+  .lb-arrow{display:none}
+  .lb-info{flex-direction:column}
+  .lb-desc{max-width:100%}
+  .video-inner{grid-template-columns:1fr}
+  .video-text{padding:80px 24px}
+  .video-visual{min-height:50vh}
+  .video-player-wrap{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-arrow lb-prev" id="lb-prev">‹</button>
+  <button class="lb-arrow lb-next" id="lb-next">›</button>
+  <div class="lb-inner">
+    <div class="lb-counter" id="lb-counter"></div>
+    <div class="lb-img-wrap" id="lb-img-wrap"></div>
+    <div class="lb-info">
+      <div><div class="lb-cat" id="lb-cat"></div><div class="lb-title" id="lb-title"></div></div>
+      <div class="lb-desc" id="lb-desc"></div>
+    </div>
+    <div class="lb-dots" id="lb-dots"></div>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="nav-logo">W · M</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#video">Motion</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Graphic Designer · Nairobi, Kenya</div>
+    <h1 class="hero-name">Whitney<br><em>Macharia</em></h1>
+    <p class="hero-bio">Strategic designer blending artistic creativity with user-centered thinking. I craft visual narratives that resonate — from brand identities to digital experiences.</p>
+    <a href="#work" class="hero-cta">
+      <span>View My Work</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+    <div class="hero-scroll-hint"><div class="scroll-line"></div>Scroll to explore</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-blob"></div><div class="hero-blob"></div>
+    <div class="hero-visual-grid">
+      <div class="hero-grid-card"><span class="card-label" style="color:var(--brown-mid)">Visual Communications & Branding</span></div>
+      <div class="hero-grid-card"><span class="card-label">Branding</span></div>
+      <div class="hero-grid-card"><span class="card-label" style="color:#fff">Web Design</span></div>
+      <div class="hero-grid-card"><span class="card-label" style="color:var(--brown-dark)">Motion</span></div>
+      <div class="hero-grid-card"><span class="card-label" style="color:var(--text-muted)">Instructional Design</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-wrap"><div class="marquee-track">
+  <span class="marquee-item">Visual Communication <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Brand Identity <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Instructional Design <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Web UI/UX <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Motion Graphics <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Logo Design <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Adobe Creative Suite <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Figma <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Visual Communication <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Brand Identity <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Instructional Design <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Web UI/UX <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Motion Graphics <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Logo Design <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Adobe Creative Suite <span class="marquee-dot">✦</span></span>
+  <span class="marquee-item">Figma <span class="marquee-dot">✦</span></span>
+</div></div>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about-section" id="about">
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <div class="section-label">About Me</div>
+      <p>I'm a strategic designer with a focus on Visual Communication and Instructional Design. Blending artistic creativity with a strategic focus on user-centered messaging, I craft visual narratives that resonate across diverse audiences.</p>
+      <p>My goal is to utilize design thinking to build consistent, high-impact communication tools that support sustainable development and global knowledge sharing.</p>
+      <div class="tools-list">
+        <span class="tool-tag">Adobe Illustrator</span><span class="tool-tag">Photoshop</span>
+        <span class="tool-tag">After Effects</span><span class="tool-tag">Figma</span><span class="tool-tag">Canva Pro</span>
+      </div>
+    </div>
+    <div class="about-visual reveal reveal-delay-2">
+      <div class="about-circle"></div><div class="about-circle"></div>
+      <div class="about-visual-inner">
+        <div class="about-visual-text">Crafting visuals<br>that resonate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WORK ═══ -->
+<section class="work-section" id="work">
+  <div class="reveal">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title">Crafted with<br><em>intention</em></h2>
+  </div>
+  <div class="filter-tabs reveal reveal-delay-1">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="instructional">Instructional Design</button>
+    <button class="filter-btn" data-filter="web">Web Design</button>
+    <button class="filter-btn" data-filter="branding">Branding</button>
+    <button class="filter-btn" data-filter="logos">Logos</button>
+    <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+    <button class="filter-btn" data-filter="creative">Creative Concepts</button>
+  </div>
+
+  <!-- ════ ALL ════ -->
+  <div class="category-section active reveal reveal-delay-2" id="cat-all">
+    <div class="project-grid">
+
+      <div class="project-card" style="grid-column:span 5"
+        data-cat="Instructional Design · Adobe Illustrator"
+        data-title="Our Digital & Sustainable Future"
+        data-desc="A visual system communicating five sustainability pillars — zero-waste documentation, smart resource allocation, sustainable consumption, clean water, and inclusive education."
+        data-img="assets/sustainable.png" data-color="#1E3A5F">
+        <div class="project-card-bg c-navy">
+          <img src="assets/sustainable.png" alt="Our Digital & Sustainable Future" onerror="this.style.display='none'">
+          <span class="project-card-icon">Sustain</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Our Digital & Sustainable Future</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Instructional Design · Adobe Illustrator</div>
+          <div class="project-card-title">Our Digital & Sustainable Future</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 4"
+        data-cat="Instructional Design · Infographic"
+        data-title="How to Self-Care for Mental Health"
+        data-desc="An infographic covering six self-care practices: exercise, meditation, therapy, sleep, joyful activities, and nourishing foods — designed for broad audience accessibility."
+        data-img="assets/mentalhealth.png" data-color="#7B5E7B">
+        <div class="project-card-bg c-mauve">
+          <img src="assets/mentalhealth.png" alt="Self-Care for Mental Health" onerror="this.style.display='none'">
+          <span class="project-card-icon">Mental</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">How to Self-Care for Mental Health</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Instructional Design · Infographic</div>
+          <div class="project-card-title">How to Self-Care for Mental Health</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 3"
+        data-cat="Instructional Design · Presentation"
+        data-title="Principles of Visual Communication"
+        data-desc="A presentation deck exploring the design lifecycle and core design pillars: simplicity, hierarchy, and consistency — building effective learning experiences through design."
+        data-img="assets/presentation.png" data-color="#2A6080">
+        <div class="project-card-bg" style="background:#2A6080">
+          <img src="assets/presentation.png" alt="Principles of Visual Communication" onerror="this.style.display='none'">
+          <span class="project-card-icon">Visual</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Principles of Visual Communication</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Instructional Design · Presentation</div>
+          <div class="project-card-title">Principles of Visual Communication</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 7"
+        data-cat="Web Design · Figma · Adobe Illustrator"
+        data-title="ElimuFinda — Scholarship Discovery Platform"
+        data-desc="Streamlines the scholarship application journey for students through strategic visual hierarchy, clear filtering, and verified opportunity listings — reducing information overload."
+        data-img="assets/elimufinda.jpg" data-color="#3D1F0D">
+        <div class="project-card-bg c-dark">
+          <img src="assets/elimufinda.jpg" alt="ElimuFinda" onerror="this.style.display='none'">
+          <span class="project-card-icon">ElimuFinda</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">ElimuFinda — Scholarship Platform</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Web Design · Figma</div>
+          <div class="project-card-title">ElimuFinda — Scholarship Discovery Platform</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 5"
+        data-cat="Web Design · Figma · Mobile-first"
+        data-title="Uzima Bites — Food Marketplace UI"
+        data-desc="A mobile-first food marketplace for health-conscious Nairobi users. Minimalist layout reduces decision fatigue while the order flow is optimised to drive conversion."
+        data-img="assets/uzima.png" data-color="#3D5A47">
+        <div class="project-card-bg c-green">
+          <img src="assets/uzima.png" alt="Uzima Bites" onerror="this.style.display='none'">
+          <span class="project-card-icon">Uzima</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Uzima Bites — Food Marketplace</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Web Design · Mobile-first</div>
+          <div class="project-card-title">Uzima Bites — Food Marketplace UI</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 4"
+        data-cat="Branding · SME"
+        data-title="Bizna Yetu — Full Brand System"
+        data-desc="Complete brand identity for an SME empowerment platform. Includes logo, stationery, merchandise, and digital brand guidelines — all built for scalability."
+        data-img="assets/biznayetu.png" data-color="#E8D5C4">
+        <div class="project-card-bg c-ecru">
+          <img src="assets/biznayetu.png" alt="Bizna Yetu" onerror="this.style.display='none'">
+          <span class="project-card-icon">Bizna</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Bizna Yetu — Brand Identity</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Branding · SME</div>
+          <div class="project-card-title">Bizna Yetu — Full Brand System</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 4"
+        data-cat="Logo · Eco-Skincare"
+        data-title="Terra — Sustainable Skincare Brand"
+        data-desc="Minimalist emblem merging leaf motifs with fluid motion. Deep forest greens and earth tones evoke trust and environmental consciousness for this eco-skincare brand."
+        data-img="assets/terra.png" data-color="#2D5016">
+        <div class="project-card-bg c-forest">
+          <img src="assets/terra.png" alt="Terra Skincare" onerror="this.style.display='none'">
+          <span class="project-card-icon">Terra</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Terra — Eco-Skincare</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Logo · Eco-Skincare</div>
+          <div class="project-card-title">Terra — Sustainable Skincare Brand</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 4"
+        data-cat="Logo · Fintech"
+        data-title="Elevate Finance Identity"
+        data-desc="Geometric E-curve in a circular frame. Electric Blue to Deep Navy gradient communicates modern stability and professional reliability — scalable across all touchpoints."
+        data-img="assets/elevate.png" data-color="#1A3A6B">
+        <div class="project-card-bg c-blue">
+          <img src="assets/elevate.png" alt="Elevate Finance" onerror="this.style.display='none'">
+          <span class="project-card-icon" style="color:rgba(255,255,255,.15)">E↗</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Elevate Finance Identity</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Logo · Fintech</div>
+          <div class="project-card-title">Elevate Finance Identity</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 6"
+        data-cat="Graphic Design · Advertising"
+        data-title="Yathar Gas Suppliers — Ad Campaign"
+        data-desc="Bold advertising materials driving customer response. Clear calls-to-action and service breakdowns build confidence in the brand's reliability and quick delivery promise."
+        data-img="assets/yathar.png" data-color="#A0623A">
+        <div class="project-card-bg c-warm">
+          <img src="assets/yathar.jpg" alt="Yathar Gas" onerror="this.style.display='none'">
+          <span class="project-card-icon" style="color:rgba(255,255,255,.2)">Gas</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Yathar Gas Suppliers — Ads</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Graphic Design · Advertising</div>
+          <div class="project-card-title">Yathar Gas Suppliers — Ad Campaign</div>
+        </div>
+      </div>
+
+      <div class="project-card" style="grid-column:span 6"
+        data-cat="Graphic Design · Fashion Event"
+        data-title="Kijo Styles — Fashion Show Posters"
+        data-desc="Event poster series for Kijo Styles fashion show. Editorial layout balances a high-fashion aesthetic with clear event information for maximum audience reach."
+        data-img="assets/kijo.png" data-color="#A0665A">
+        <div class="project-card-bg c-rose">
+          <img src="assets/kijo.png" alt="Kijo Styles" onerror="this.style.display='none'">
+          <span class="project-card-icon" style="color:rgba(255,255,255,.2)">Kijo</span>
+        </div>
+        <div class="project-card-scrim"></div>
+        <div class="card-static-title">Kijo Styles — Fashion Show</div>
+        <button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay">
+          <div class="project-card-cat">Graphic Design · Event</div>
+          <div class="project-card-title">Kijo Styles — Fashion Show Posters</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════ INSTRUCTIONAL ════ -->
+  <div class="category-section" id="cat-instructional">
+    <div class="category-description"><p>A unified visual ecosystem designed for high-impact communication, using Adobe Illustrator for custom vector iconography and Adobe Photoshop for asset optimization.</p></div>
+    <div class="project-grid id-grid">
+      <div class="project-card" data-cat="Instructional Design · Adobe Illustrator" data-title="Our Digital & Sustainable Future" data-desc="A visual system communicating five sustainability pillars: zero-waste documentation, smart resource allocation, sustainable consumption, clean water, and inclusive education." data-img="assets/sustainable.png" data-color="#1E3A5F">
+        <div class="project-card-bg c-navy"><img src="assets/sustainable.png" alt="Sustainable Future" onerror="this.style.display='none'"><span class="project-card-icon">Sustain</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Our Digital & Sustainable Future</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Instructional Design · Adobe Illustrator</div><div class="project-card-title">Our Digital & Sustainable Future</div></div>
+      </div>
+      <div class="project-card" data-cat="Instructional Design · Infographic" data-title="How to Self-Care for Mental Health" data-desc="Six self-care practices: exercise, meditation, therapy, sleep, joyful activities, and nourishing foods — designed for broad audience accessibility." data-img="assets/mentalhealth.png" data-color="#7B5E7B">
+        <div class="project-card-bg c-mauve"><img src="assets/mentalhealth.png" alt="Mental Health" onerror="this.style.display='none'"><span class="project-card-icon">Mental</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">How to Self-Care for Mental Health</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Instructional Design · Infographic</div><div class="project-card-title">How to Self-Care for Mental Health</div></div>
+      </div>
+      <div class="project-card" data-cat="Instructional Design · Presentation" data-title="Principles of Visual Communication" data-desc="A presentation deck exploring the design lifecycle and core design pillars — simplicity, hierarchy, and consistency — to build effective learning experiences through design." data-img="assets/presentation.png" data-color="#2A6080">
+        <div class="project-card-bg" style="background:#2A6080"><img src="assets/presentation.png" alt="Visual Communication" onerror="this.style.display='none'"><span class="project-card-icon">Visual</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Principles of Visual Communication</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Instructional Design · Presentation</div><div class="project-card-title">Principles of Visual Communication</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ WEB ════ -->
+  <div class="category-section" id="cat-web">
+    <div class="category-description"><p>High-accessibility platforms designed in Figma — strategic visual hierarchy, reduced cognitive load, and conversion-focused user flows for diverse Kenyan audiences.</p></div>
+    <div class="project-grid web-grid">
+      <div class="project-card" data-cat="Web Design · Figma · Adobe Illustrator" data-title="ElimuFinda — Scholarship Discovery Platform" data-desc="Streamlines the scholarship application journey for students through strategic visual hierarchy, clear filtering, and verified opportunity listings — reducing information overload." data-img="assets/elimufinda.jpg" data-color="#3D1F0D">
+        <div class="project-card-bg c-dark"><img src="assets/elimufinda.jpg" alt="ElimuFinda" onerror="this.style.display='none'"><span class="project-card-icon">ElimuFinda</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">ElimuFinda — Scholarship Platform</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Web Design · Figma · Adobe Illustrator</div><div class="project-card-title">ElimuFinda — Scholarship Discovery Platform</div></div>
+      </div>
+      <div class="project-card" data-cat="Web Design · Figma · Mobile-first" data-title="Uzima Bites — Food Marketplace UI" data-desc="A mobile-first food marketplace for health-conscious Nairobi users. Minimalist layout reduces decision fatigue while the streamlined order flow drives conversion." data-img="assets/uzima.png" data-color="#3D5A47">
+        <div class="project-card-bg c-green"><img src="assets/uzima.png" alt="Uzima Bites" onerror="this.style.display='none'"><span class="project-card-icon">Uzima</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Uzima Bites — Food Marketplace</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Web Design · Figma · Mobile-first</div><div class="project-card-title">Uzima Bites — Food Marketplace UI</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ BRANDING ════ -->
+  <div class="category-section" id="cat-branding">
+    <div class="category-description"><p>Cohesive brand identity systems — professional typography and scalable vector assets communicating reliability and growth for emerging businesses.</p></div>
+    <div class="project-grid brand-grid">
+      <div class="project-card" data-cat="Branding · SME" data-title="Bizna Yetu — Full Brand System" data-desc="Complete brand identity: logo, stationery, merchandise, and digital brand guidelines all built for scalability and consistent brand presence." data-img="assets/biznayetu.png" data-color="#E8D5C4">
+        <div class="project-card-bg c-ecru"><img src="assets/biznayetu.png" alt="Bizna Yetu" onerror="this.style.display='none'"><span class="project-card-icon">Bizna</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Bizna Yetu — Brand System</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Branding · SME</div><div class="project-card-title">Bizna Yetu — Full Brand System</div></div>
+      </div>
+      <div class="project-card" data-cat="Branding · Skincare" data-title="Terra — Eco-Skincare Packaging" data-desc="Sustainable skincare branding. Leaf motifs, forest greens, and earth tones communicate trust and environmental consciousness." data-img="assets/terra.png" data-color="#2D5016">
+        <div class="project-card-bg c-forest"><img src="assets/terra.png" alt="Terra" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.12)">Terra</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Terra — Eco-Skincare Packaging</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Branding · Skincare</div><div class="project-card-title">Terra — Eco-Skincare Packaging</div></div>
+      </div>
+      <div class="project-card" data-cat="Branding · Food" data-title="Kindred Foods — Package Design" data-desc="Warm, inviting packaging emphasising natural ingredients and community-driven sourcing — designed to stand out on shelves." data-img="assets/kindred.png" data-color="#A0623A">
+        <div class="project-card-bg c-warm"><img src="assets/kindred.png" alt="Kindred Foods" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.2)">KF</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Kindred Foods — Packaging</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Branding · Food</div><div class="project-card-title">Kindred Foods — Package Design</div></div>
+      </div>
+      <div class="project-card" data-cat="Branding · Fintech" data-title="Elevate Finance — Digital Brand" data-desc="Technology-forward fintech brand. Electric Blue and Deep Navy gradient, geometric mark, scalable across mobile interfaces and corporate collateral." data-img="assets/elevate.png" data-color="#1A3A6B">
+        <div class="project-card-bg c-blue"><img src="assets/elevate.png" alt="Elevate Finance" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.1)">E</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Elevate Finance — Digital Brand</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Branding · Fintech</div><div class="project-card-title">Elevate Finance — Digital Brand</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ LOGOS ════ -->
+  <div class="category-section" id="cat-logos">
+    <div class="project-grid logo-grid">
+      <div class="project-card" data-cat="Logo · Eco-Skincare" data-title="Terra — Sustainable Skincare Brand" data-desc="A minimalist emblem merging leaf motifs with fluid motion to symbolize growth and natural renewal. Deep forest greens and earth tones evoke trust and environmental consciousness." data-img="assets/terra.png" data-color="#2D5016">
+        <div class="project-card-bg c-forest"><img src="assets/terra.png" alt="Terra" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.1)">Terra</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Terra — Sustainable Skincare</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Logo · Eco-Skincare</div><div class="project-card-title">Terra — Sustainable Skincare Brand</div></div>
+      </div>
+      <div class="project-card" data-cat="Logo · Fintech" data-title="Elevate Finance — Technology & Wealth" data-desc="A geometric E-curve within a circular frame. Electric Blue and Deep Navy gradient establishes modern stability. Highly scalable — retains impact across mobile apps and corporate collateral." data-img="assets/elevate.png" data-color="#1A3A6B">
+        <div class="project-card-bg c-blue"><img src="assets/elevate.png" alt="Elevate Finance" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.1)">E↗</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Elevate Finance — Technology & Wealth</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Logo · Fintech</div><div class="project-card-title">Elevate Finance — Technology & Wealth</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ GRAPHIC ════ -->
+  <div class="category-section" id="cat-graphic">
+    <div class="project-grid graphic-grid">
+      <div class="project-card" data-cat="Graphic Design · Advertising" data-title="Yathar Gas Suppliers — Ad Campaign" data-desc="Bold advertising materials driving customer response. Clear calls-to-action and service breakdowns build confidence in the brand's reliability and quick delivery promise." data-img="assets/yathar.png" data-color="#A0623A">
+        <div class="project-card-bg c-warm"><img src="assets/yathar.jpg" alt="Yathar Gas" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.2)">Gas</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Yathar Gas — Ad Campaign</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Graphic Design · Advertising</div><div class="project-card-title">Yathar Gas Suppliers — Ad Campaign</div></div>
+      </div>
+      <div class="project-card" data-cat="Graphic Design · Church" data-title="SDA Church — Development Offering" data-desc="Fundraising promotional material for SDA Church Ndururumo. Clear goal communication, event details, and trust-building visual language." data-img="assets/sda.png" data-color="#1E3A5F">
+        <div class="project-card-bg c-navy"><img src="assets/sda.jpg" alt="SDA Church" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.15)">SDA</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">SDA Church — Development Offering</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Graphic Design · Church</div><div class="project-card-title">SDA Church — Development Offering</div></div>
+      </div>
+      <div class="project-card" data-cat="Graphic Design · Media" data-title="TV47 — Brand Promotion" data-desc="Promotional design for TV47, Kenya's trusted news source. Confident, authoritative visual identity communicating the brand's news mission." data-img="assets/tv47.png" data-color="#8B1A2F">
+        <div class="project-card-bg" style="background:#8B1A2F"><img src="assets/tv47.png" alt="TV47" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.15)">TV47</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">TV47 — Brand Promotion</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Graphic Design · Media</div><div class="project-card-title">TV47 — Brand Promotion</div></div>
+      </div>
+      <div class="project-card" data-cat="Graphic Design · Retail" data-title="Nike Sneakers — New Arrival Ad" data-desc="A dynamic new arrival ad combining bold typography, strong contrast, and urgency-driven layout to drive conversions for a sneaker product drop." data-img="assets/nike.png" data-color="#111">
+        <div class="project-card-bg c-dark"><img src="assets/nike.png" alt="Nike" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.12)">Nike</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Nike Sneakers — New Arrival</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Graphic Design · Retail</div><div class="project-card-title">Nike Sneakers — New Arrival Ad</div></div>
+      </div>
+      <div class="project-card" data-cat="Graphic Design · Fashion Event" data-title="Kijo Styles — Fashion Show Posters" data-desc="Event poster series balancing editorial fashion aesthetic with clear event information for maximum audience reach." data-img="assets/kijo.png" data-color="#A0665A">
+        <div class="project-card-bg c-rose"><img src="assets/kijo.png" alt="Kijo Styles" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.2)">Kijo</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Kijo Styles — Fashion Show</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Graphic Design · Fashion Event</div><div class="project-card-title">Kijo Styles — Fashion Show Posters</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ CREATIVE ════ -->
+  <div class="category-section" id="cat-creative">
+    <div class="category-description"><p>Experimental poster design pushing the boundaries of typography, 3D assets, and visual storytelling — exploring future-forward and editorial aesthetics.</p></div>
+    <div class="project-grid creative-grid">
+      <div class="project-card" data-cat="Creative Concept · Tech / Music" data-title="Synth Galaxy — Aural Vision 3025" data-desc="Audio-Beyond Tomorrow — a futuristic immersive audio experience poster. 3D headphone rendering on a wireframe grid with deep space aesthetics and layered type." data-img="assets/synth.jpg" data-color="#111">
+        <div class="project-card-bg c-dark"><img src="assets/synth.jpg" alt="Synth Galaxy" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(160,98,58,.4)">Synth</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Synth Galaxy</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Creative Concept · Tech / Music</div><div class="project-card-title">Synth Galaxy — Aural Vision 3025</div></div>
+      </div>
+      <div class="project-card" data-cat="Creative Concept · Sports / Music" data-title="The Rhythm of the Game" data-desc="The court as a stage — where strategy and rhythm converge in a synchronized symphony of offense and defense." data-img="assets/rhythm.jpg" data-color="#1A3A6B">
+        <div class="project-card-bg c-blue"><img src="assets/rhythm.jpg" alt="Rhythm of the Game" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.15)">♫</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">The Rhythm of the Game</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Creative Concept · Sports / Music</div><div class="project-card-title">The Rhythm of the Game</div></div>
+      </div>
+      <div class="project-card" data-cat="Creative Concept · Editorial" data-title="Rush Hour Romance" data-desc="An editorial poster exploring the quiet connection found in the chaos of rush hour. Bold typographic layering with intimate photographic content." data-img="assets/rush.jpg" data-color="#111">
+        <div class="project-card-bg" style="background:#111"><img src="assets/rush.jpg" alt="Rush Hour Romance" onerror="this.style.display='none'"><span class="project-card-icon" style="color:rgba(255,255,255,.08)">Rush</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Rush Hour Romance</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Creative Concept · Editorial</div><div class="project-card-title">Rush Hour Romance</div></div>
+      </div>
+      <div class="project-card" data-cat="Creative Concept · Editorial" data-title="Resonance — Feel the Soul" data-desc="Resonance isn't just a scientific term — it's a feeling. A futuristic editorial exploring the vibrating harmony between inner self and the world around you." data-img="assets/resonance.jpg" data-color="#E0D4C8">
+        <div class="project-card-bg c-light"><img src="assets/resonance.jpg" alt="Resonance" onerror="this.style.display='none'"><span class="project-card-icon">Res.</span></div>
+        <div class="project-card-scrim"></div><div class="card-static-title">Resonance — Feel the Soul</div><button class="card-open-btn">⤢</button>
+        <div class="project-card-overlay"><div class="project-card-cat">Creative Concept · Editorial</div><div class="project-card-title">Resonance — Feel the Soul</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VIDEO ═══ -->
+<section class="video-section" id="video">
+  <div class="video-inner">
+    <div class="video-text reveal">
+      <div class="section-label">Motion & Video</div>
+      <h2 class="section-title">Bringing brands<br><em>to life</em></h2>
+      <p class="video-desc">A high-energy advertisement for Uzima Bites, an organic meal-ordering platform. Utilizing Adobe After Effects, I implemented core animation principles and smooth transitions to mirror the app's intuitive interface — a dynamic visual narrative that drives engagement while communicating the brand's healthy, organic lifestyle mission.</p>
+      <div class="video-meta">
+        <div class="video-meta-row"><span class="vm-label">Client</span><span class="vm-val">Uzima Bites</span></div>
+        <div class="video-meta-row"><span class="vm-label">Category</span><span class="vm-val">Motion Graphics · Brand Advertisement</span></div>
+        <div class="video-meta-row"><span class="vm-label">Tools</span><span class="vm-val">Adobe After Effects · Premiere Pro</span></div>
+        <div class="video-meta-row"><span class="vm-label">Goal</span><span class="vm-val">Drive engagement & communicate organic lifestyle brand values</span></div>
+      </div>
+    </div>
+
+    <div class="video-visual reveal reveal-delay-2">
+      <div class="video-bg-word">Motion</div>
+
+      <!--
+        ══════════════════════════════════════════
+        VIDEO PLAYER
+        Replace  assets/uzima-bites-ad.mp4  with
+        the actual path to your video file.
+        The poster= attribute shows a thumbnail
+        before the video plays — replace it too.
+
+        If you prefer YouTube/Vimeo, delete the
+        <video> block and paste an <iframe> instead:
+
+        <iframe width="100%" height="100%"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          frameborder="0" allowfullscreen
+          style="position:absolute;inset:0;width:100%;height:100%">
+        </iframe>
+        ══════════════════════════════════════════
+      -->
+      <div class="video-player-wrap" id="video-player-wrap">
+        <video
+          id="main-video"
+          controls
+          preload="metadata"
+          poster="assets/video-thumb.jpg"
+          style="width:100%;max-height:80vh;object-fit:contain;display:block;border:1px solid rgba(196,181,160,.1)">
+          <source src="assets/uzima-bites-ad.mp4" type="video/mp4">
+          <source src="assets/uzima-bites-ad.webm" type="video/webm">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Fallback shown if video file is missing -->
+      <div class="video-fallback" id="video-fallback" style="display:none">
+        <div class="video-play-btn" id="vfb-btn"><span class="play-icon">▶</span></div>
+        <div class="video-play-label">Uzima Bites — Brand Ad · After Effects<br><small style="font-size:12px;opacity:.6">Add your video file to assets/uzima-bites-ad.mp4</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="contact-cta-big">Let's create<br><em>together</em></h2>
+    <div class="contact-info">
+      <div class="contact-info-row"><span class="contact-icon">✉</span><a href="mailto:Machariawhitney4@gmail.com" class="contact-link">Machariawhitney4@gmail.com</a></div>
+      <div class="contact-info-row"><span class="contact-icon">✆</span><a href="tel:0707077270" class="contact-link">0707 077 270</a></div>
+      <div class="contact-info-row"><span class="contact-icon">◎</span><span style="color:var(--text-muted)">Nairobi, Kenya</span></div>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <form class="contact-form" id="contact-form">
+      <div class="form-field"><label>Your Name</label><input type="text" id="f-name" placeholder="How shall I address you?" required></div>
+      <div class="form-field"><label>Email Address</label><input type="email" id="f-email" placeholder="your@email.com" required></div>
+      <div class="form-field"><label>Project Type</label><input type="text" id="f-project" placeholder="Branding, Web Design, Motion..."></div>
+      <div class="form-field"><label>Tell Me About Your Project</label><textarea id="f-message" placeholder="Share your vision — the more detail, the better." required></textarea></div>
+      <div class="form-status" id="form-status"></div>
+      <button type="submit" class="form-submit"><span id="submit-label">Send Message</span><span>↗</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">Whitney Macharia</div>
+  <div class="footer-copy">© 2025 Whitney Macharia. All rights reserved.</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li><li><a href="#work">Work</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,.project-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='60px';ring.style.height='60px';ring.style.opacity='.4'});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='.6'});
+});
+
+/* ── REVEAL ── */
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── FILTERS ── */
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.category-section').forEach(s=>s.classList.remove('active'));
+    const sec=document.getElementById('cat-'+btn.dataset.filter);
+    if(sec){sec.classList.add('active');sec.querySelectorAll('.reveal').forEach(el=>{el.classList.remove('visible');setTimeout(()=>obs.observe(el),10)})}
+  });
+});
+
+/* ── VIDEO: show fallback if file can't load ── */
+const vid = document.getElementById('main-video');
+const vwrap = document.getElementById('video-player-wrap');
+const vfb = document.getElementById('video-fallback');
+if(vid){
+  vid.addEventListener('error',()=>{
+    vwrap.style.display='none';
+    vfb.style.display='flex';
+  });
+  // If src is the placeholder text (unchanged), also show fallback
+  const src = vid.querySelector('source');
+  if(src && src.src.includes('uzima-bites-ad.mp4')){
+    // Try to load; if it errors within 2s, show fallback
+    setTimeout(()=>{
+      if(vid.readyState===0){
+        vwrap.style.display='none';
+        vfb.style.display='flex';
+      }
+    },2000);
+  }
+}
+
+/* ══════════════════════════════
+   LIGHTBOX
+══════════════════════════════ */
+const lb      = document.getElementById('lightbox');
+const lbWrap  = document.getElementById('lb-img-wrap');
+const lbCat   = document.getElementById('lb-cat');
+const lbTitle = document.getElementById('lb-title');
+const lbDesc  = document.getElementById('lb-desc');
+const lbCount = document.getElementById('lb-counter');
+const lbDots  = document.getElementById('lb-dots');
+let pool=[],idx=0;
+
+function getPool(){
+  const active=document.querySelector('.category-section.active');
+  return active?Array.from(active.querySelectorAll('.project-card')):[];
+}
+function cardData(card){
+  return{cat:card.dataset.cat||'',title:card.dataset.title||'',desc:card.dataset.desc||'',img:card.dataset.img||'',color:card.dataset.color||'#3D1F0D'};
+}
+function renderLb(){
+  const d=cardData(pool[idx]);
+  lbCat.textContent=d.cat;
+  lbTitle.textContent=d.title;
+  lbDesc.textContent=d.desc;
+  lbCount.textContent=(idx+1)+' / '+pool.length;
+  lbWrap.innerHTML='';
+  if(d.img){
+    const img=new Image();
+    img.alt=d.title;
+    img.onload=()=>lbWrap.appendChild(img);
+    img.onerror=()=>showPh(d);
+    img.src=d.img;
+  }else{showPh(d)}
+  lbDots.innerHTML='';
+  pool.forEach((_,i)=>{
+    const dot=document.createElement('div');
+    dot.className='lb-dot'+(i===idx?' active':'');
+    dot.addEventListener('click',()=>{idx=i;renderLb()});
+    lbDots.appendChild(dot);
+  });
+}
+function showPh(d){
+  const ph=document.createElement('div');
+  ph.className='lb-placeholder';ph.style.background=d.color;
+  ph.innerHTML='<div class="lb-placeholder-text">'+d.title.split('—')[0].trim()+'</div>';
+  lbWrap.appendChild(ph);
+}
+function openLb(card){
+  pool=getPool();idx=pool.indexOf(card);if(idx<0)idx=0;
+  renderLb();lb.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeLb(){lb.classList.remove('open');document.body.style.overflow=''}
+
+document.getElementById('lb-close').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+document.getElementById('lb-prev').addEventListener('click',()=>{idx=(idx-1+pool.length)%pool.length;renderLb()});
+document.getElementById('lb-next').addEventListener('click',()=>{idx=(idx+1)%pool.length;renderLb()});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('open'))return;
+  if(e.key==='Escape')closeLb();
+  if(e.key==='ArrowLeft'){idx=(idx-1+pool.length)%pool.length;renderLb()}
+  if(e.key==='ArrowRight'){idx=(idx+1)%pool.length;renderLb()}
+});
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('click',()=>openLb(card));
+});
+document.querySelectorAll('.card-open-btn').forEach(btn=>{
+  btn.addEventListener('click',e=>{e.stopPropagation();openLb(btn.closest('.project-card'))});
+});
+
+/* ══════════════════════════════
+   EMAILJS
+   Replace the 3 placeholders below.
+   Setup: https://emailjs.com (free)
+══════════════════════════════ */
+const EJS_KEY='d5ClOWKa_f-9g-32v';
+const EJS_SERVICE='service_enpy1ja';
+const EJS_TEMPLATE='template_pr00ses';
+emailjs.init(EJS_KEY);
+
+document.getElementById('contact-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const status=document.getElementById('form-status'),label=document.getElementById('submit-label');
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const proj=document.getElementById('f-project').value.trim();
+  const msg=document.getElementById('f-message').value.trim();
+  if(!name||!email||!msg){status.textContent='Please fill in all required fields.';status.className='form-status err';return}
+  label.textContent='Sending…';status.textContent='';status.className='form-status';
+  try{
+    await emailjs.send(EJS_SERVICE,EJS_TEMPLATE,{from_name:name,from_email:email,project_type:proj||'Not specified',message:msg});
+    status.textContent='✓ Message sent! I\'ll be in touch soon.';status.className='form-status ok';
+    label.textContent='Send Message';this.reset();
+  }catch(err){
+    status.textContent='✗ Something went wrong. Please email me directly.';status.className='form-status err';
+    label.textContent='Send Message';console.error(err);
+  }
+});
+</script>
+</body>
+</html>
